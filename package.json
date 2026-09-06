@@ -1,0 +1,33 @@
+{
+  "name": "03-api-solid",
+  "version": "1.0.0",
+  "description": "- [ ] Deve ser possivel se cadastrar; - [ ] Deve ser possivel se autenticar; - [ ] Deve ser possivel obter o perfil de um usuário logado; - [ ] Deve ser possivel obter o número de check-ins realizados pelo usuário logado; - [ ] Deve ser possivel o usuário obter seu histórico de check-ins; - [ ] Deve ser possivel o usuário buscar academias próximas; - [ ] Deve ser possivel o usuário buscar academias pelo nome; - [ ] Deve ser possivel o usuário realizar check-in em uma academia; - [ ] Deve ser possivel validar o check-in de um usuário; - [ ] Deve ser possivel cadastrar uma academia; - [ ] **BONUS** Deve ser possivel o usuário alterar os seus dados;",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build",
+    "lint": "eslint src --ext .ts --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@prisma/client": "5.22.0",
+    "@rocketseat/eslint-config": "2.2.2",
+    "@types/bcryptjs": "2.4.6",
+    "@types/node": "26.4.0",
+    "eslint": "8.57.1",
+    "prisma": "5.22.0",
+    "tsup": "8.5.1",
+    "tsx": "4.23.13",
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3",
+    "dotenv": "17.4.2",
+    "fastify": "5.12.1",
+    "zod": "4.5.4"
+  }
+}
