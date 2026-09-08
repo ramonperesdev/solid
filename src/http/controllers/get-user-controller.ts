@@ -13,8 +13,6 @@ export async function getUserController(
 
   const { id } = getUsersSchema.parse(request.params)
 
-  console.log('id ->', id)
-
   try {
     const usersRepository = new PrismaUsersRepository()
     const getUseCase = new GetUserUseCase(usersRepository)
