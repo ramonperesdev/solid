@@ -1,11 +1,9 @@
 import { Prisma } from '@prisma/client'
 import { prisma } from '../../lib/prisma'
-import type { UsersRepository } from '../users-repository'
-
-export interface FindByEmailOrCpfParams {
-  email: string
-  cpf: string
-}
+import type {
+  FindByEmailOrCpfParams,
+  UsersRepository,
+} from '../users-repository'
 
 export class PrismaUsersRepository implements UsersRepository {
   async create(data: Prisma.UserCreateInput) {
@@ -27,9 +25,9 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   async findAll() {
-    const user = await prisma.user.findMany()
+    const users = await prisma.user.findMany()
 
-    return user
+    return users
   }
 
   async findUnique(id: string) {

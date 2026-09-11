@@ -2,6 +2,7 @@ import type { FastifyReply, FastifyRequest } from 'fastify'
 import { PrismaUsersRepository } from '../../repositories/prisma/prisma-users-repository'
 import { GetUserUseCase } from '../../use-cases/get-user-use-case'
 import z from 'zod'
+import { UserNotExistsError } from '../../use-cases/errors/user-not-exists-error'
 
 export async function getUserController(
   request: FastifyRequest,
@@ -21,6 +22,9 @@ export async function getUserController(
 
     return reply.status(200).send(users)
   } catch (error) {
-    return reply.status(409).send()
+    if (error instanceof UserNotExistsError) {
+      return reply.status(404).send({ message: error.message })
+    }
+    return reply.status(400).send()
   }
 }
