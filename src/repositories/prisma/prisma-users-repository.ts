@@ -17,7 +17,7 @@ export class PrismaUsersRepository implements UsersRepository {
   async findByEmailOrCpf({ email, cpf }: FindByEmailOrCpfParams) {
     const userExists = await prisma.user.findFirst({
       where: {
-        OR: [{ email }, { cpf }],
+        OR: [{ email }, { cpf: cpf ? cpf : '' }],
       },
     })
 

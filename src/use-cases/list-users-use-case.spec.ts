@@ -1,27 +1,30 @@
-import { expect, describe, it } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '../repositories/in-memory/in-memory-users-repository'
 import { ListUsersUseCase } from './list-users-use-case'
 
-describe('List Users Use Case', () => {
-  it('should be return users', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const getUserUseCase = new ListUsersUseCase(usersRepository)
+let usersRepository: InMemoryUsersRepository
+let listUsersUseCase: ListUsersUseCase
 
-    const { users } = await getUserUseCase.execute()
+describe('List Users Use Case', () => {
+  beforeEach(() => {
+    usersRepository = new InMemoryUsersRepository()
+    listUsersUseCase = new ListUsersUseCase(usersRepository)
+  })
+
+  it('should be return users', async () => {
+    const { users } = await listUsersUseCase.execute()
 
     expect(users).toHaveLength(2)
   })
 
   it('should be able to list users after create', async () => {
-    const usersRepository = new InMemoryUsersRepository()
-    const listUsersUseCase = new ListUsersUseCase(usersRepository)
-
     await usersRepository.create({
       name: 'User 1',
       email: 'user1@email.com',
       cpf: '11111111111',
       password_hash: '123456',
     })
+
     await usersRepository.create({
       name: 'User 2',
       email: 'user2@email.com',

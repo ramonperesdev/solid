@@ -9,5 +9,5 @@ export interface UsersRepository {
 
 export interface FindByEmailOrCpfParams {
   email: string
-  cpf: string
+  cpf?: string
 }
